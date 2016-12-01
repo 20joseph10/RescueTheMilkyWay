@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using VRStandardAssets.Utils;
 
 namespace VRStandardAssets.Examples
@@ -15,17 +16,21 @@ namespace VRStandardAssets.Examples
         [SerializeField] public VRInteractiveItem m_InteractiveItem;
         [SerializeField] public Renderer m_Renderer;
         public GameObject explode;
+        public Star StarInfo;
+
         bool waitActive = false;
         bool canSwitch = false;
+        private Text infoPan;
         private void Awake ()
         {
             m_Renderer.material = m_NormalMaterial;
             m_InteractiveItem = gameObject.GetComponent<VRInteractiveItem>();
+            infoPan = GameObject.FindWithTag("InfoPan").GetComponent<Text>() as Text;
 
         }
 
 
-        private void OnEnable()
+    private void OnEnable()
         {
 
             m_InteractiveItem.OnOver += HandleOver;
@@ -49,8 +54,23 @@ namespace VRStandardAssets.Examples
         //Handle the Over event
         private void HandleOver()
         {
-            Debug.Log("Show over state");
             m_Renderer.material = m_OverMaterial;
+            string starNotes = "";
+            char[] tempchar = StarInfo.Notes.ToCharArray();
+            int tempcount = 0;
+            foreach(char i in tempchar)
+            {
+                if (tempcount == 20) {
+                    tempcount = 0;
+                    starNotes += "-\n";
+                }
+                tempcount++;
+                starNotes += i.ToString();
+            }
+
+            infoPan.text = "Name: <b><color=red>" + StarInfo.Name + "</color></b>\nRA: " + StarInfo.RA + "\nDec: " + StarInfo.Dec +"\nMagnitude: " + StarInfo.abs_mag + "\nNotes: " + starNotes;
+            
+            
         }
 
 
@@ -59,6 +79,7 @@ namespace VRStandardAssets.Examples
         {
             Debug.Log("Show out state");
             m_Renderer.material = m_NormalMaterial;
+            infoPan.text = "";
         }
 
 
@@ -67,15 +88,7 @@ namespace VRStandardAssets.Examples
         {
             Debug.Log("Show click state");
             m_Renderer.material = m_ClickedMaterial;
-            StartCoroutine(Wait());
-
-        }
-
-        IEnumerator Wait()
-        {
-            explode.SetActive(true);
-            yield return new WaitForSeconds(1.3f);
-            this.gameObject.SetActive(false);
+            
         }
 
         //Handle the DoubleClick event

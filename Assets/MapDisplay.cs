@@ -8,7 +8,7 @@ public class MapDisplay : MonoBehaviour{
     public GameObject mainCam;
 
     private bool flickFlag = false;
-    public int flickRate = 10;
+    public int flickRate = 20;
 
     private int count = 0;
 
@@ -24,7 +24,8 @@ public class MapDisplay : MonoBehaviour{
         float[] position = getRA_Dec(mainCam.transform.position.x, mainCam.transform.position.y, -mainCam.transform.position.z);
         Dot.transform.localPosition = new Vector3(position[0], position[1], 0.0f);
 
-        if (Input.GetKeyDown(KeyCode.Tab)){
+        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetButtonDown("Jump"))
+        {
             map.SetActive(true);
             flickFlag = true;
         }
@@ -40,7 +41,8 @@ public class MapDisplay : MonoBehaviour{
             count = 0;
         }
 
-        if (Input.GetKeyUp(KeyCode.Tab)){
+        if (Input.GetKeyUp(KeyCode.Tab) || Input.GetButtonUp("Jump"))
+        {
             map.SetActive(false);
             flickFlag = false;
         }
@@ -55,8 +57,19 @@ public class MapDisplay : MonoBehaviour{
         if (r < 1e-5) r = 1e-5f;
         float B = Mathf.Asin(tempz / r);
         float A = Mathf.Asin(tempy / r / Mathf.Cos(B));
+        float A1 = Mathf.Acos(tempx / r / Mathf.Cos(B));
 
-        if (A < 0) { A += 2 * Mathf.PI; }
+        if (A>0)
+        {
+            if ((Mathf.PI - A) == A1 || (Mathf.PI - A) == 2 * Mathf.PI - A1)
+                A = Mathf.PI - A;
+        } else if (A < 0) {
+            if ((A + 2 * Mathf.PI) == A1 || (A + 2 * Mathf.PI) == 2 * Mathf.PI - A1)
+                A = A + 2 * Mathf.PI;
+            else
+                A = Mathf.PI - A;
+        }
+
         //change to degree
         B = B/Mathf.PI * 180f;
         A = A/Mathf.PI * 180f;
@@ -69,7 +82,7 @@ public class MapDisplay : MonoBehaviour{
 
         result[0] = 88.2f - 88.2f / 24f * H;
         result[1] = -22.05f + 22.05f / 90f * B;
-      
+
         return result; 
 
     }

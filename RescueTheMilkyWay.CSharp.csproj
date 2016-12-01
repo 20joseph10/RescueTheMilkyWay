@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -64,6 +66,15 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
     <Reference Include="OSVR.ClientKit">
       <HintPath>Assets\Plugins\OSVR.ClientKit.dll</HintPath>
     </Reference>
@@ -72,13 +83,18 @@
     <Compile Include="Assets\ConnectLine.cs" />
     <Compile Include="Assets\Constellation.cs" />
     <Compile Include="Assets\Constellations.cs" />
+    <Compile Include="Assets\CreatSphere_Text.cs" />
     <Compile Include="Assets\CreatSpheres.cs" />
     <Compile Include="Assets\CreatSpheres_Constell.cs" />
     <Compile Include="Assets\Creat_Constellation.cs" />
+    <Compile Include="Assets\EarthRendering Free\CameraCtrl.cs" />
     <Compile Include="Assets\ExampleInteractiveItem.cs" />
     <Compile Include="Assets\FlyCam.cs" />
     <Compile Include="Assets\GalaxyBox1\examplescene.cs" />
     <Compile Include="Assets\InfinteStar.cs" />
+    <Compile Include="Assets\Intro_1_Interactive.cs" />
+    <Compile Include="Assets\Intro_1_TextManager.cs" />
+    <Compile Include="Assets\Intro_2_Creat.cs" />
     <Compile Include="Assets\MapDisplay.cs" />
     <Compile Include="Assets\OSVRUnity\Sample\Demo\Scripts\Managers\ColorManager.cs" />
     <Compile Include="Assets\OSVRUnity\Sample\Demo\Scripts\Objects\ColorChanger.cs" />
@@ -163,8 +179,15 @@
     <Compile Include="Assets\OVR\Scripts\Util\OVRScreenFade.cs" />
     <Compile Include="Assets\OVR\Scripts\Util\OVRTrackerBounds.cs" />
     <Compile Include="Assets\OVR\Scripts\Util\OVRWaitCursor.cs" />
+    <Compile Include="Assets\PlayVideo.cs" />
+    <Compile Include="Assets\PlayVideo_Constellation.cs" />
+    <Compile Include="Assets\PlayVideo_UrsaMajor.cs" />
     <Compile Include="Assets\Reticle.cs" />
+    <Compile Include="Assets\ScriptCaller.cs" />
     <Compile Include="Assets\Scripts\AutoRecenter.cs" />
+    <Compile Include="Assets\Select_Left.cs" />
+    <Compile Include="Assets\Select_Right_1.cs" />
+    <Compile Include="Assets\Select_Right_2.cs" />
     <Compile Include="Assets\Star.cs" />
     <Compile Include="Assets\VRInteractiveItem.cs" />
     <Compile Include="Assets\VRSampleScenes\Scripts\Common\SessionData.cs" />
@@ -190,8 +213,11 @@
     <Compile Include="Assets\VRStandardAssets\Scripts\VRTrackingReset.cs" />
     <Compile Include="Assets\WalkInConstellation.cs" />
     <Compile Include="Assets\Walker.cs" />
+    <Compile Include="Assets\show_panel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\EarthRendering Free\Atmosphere.shader" />
+    <None Include="Assets\EarthRendering Free\Earth.shader" />
     <None Include="Assets\GalaxyBox1\instructions.txt" />
     <None Include="Assets\OVR\Resources\Unlit Transparent Color.shader" />
     <None Include="Assets\OVR\Shaders\OVRColorRampAlpha.shader" />

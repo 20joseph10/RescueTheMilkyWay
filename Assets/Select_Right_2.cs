@@ -14,7 +14,7 @@ public class Select_Right_2 : MonoBehaviour
     public bool move;
     public Scrollbar SB;
     public bool On;
-    public float scroll = (float)1 /8;
+    public float scroll = (float)1 / 8;
     public bool active;
     public double up_bond;
     public double low_bond;
@@ -42,13 +42,15 @@ public class Select_Right_2 : MonoBehaviour
         On = false;
         active = false;
 
-        var readerNAME_1 = new StreamReader(File.OpenRead(@"./Assets/ConstellationData/ConstellationCSV/ConstName_Lines"));
-        var readerNAME = new StreamReader(File.OpenRead(@"./Assets/ConstellationData/ConstellationCSV/ConstName_Lines_full"));
 
-        int tempi = 0;
-        while (!readerNAME.EndOfStream)
+        TextAsset nameData1 = Resources.Load("ConstellationData/ConstellationCSV/ConstName_Lines") as TextAsset;
+        TextAsset nameData = Resources.Load("ConstellationData/ConstellationCSV/ConstName_Lines_full") as TextAsset;
+
+        string[] name1 = nameData1.ToString().Split('\n');
+        string[] name = nameData.ToString().Split('\n');
+        for (int i = 0; i < name.Length; i++)
         {
-            string tempString = readerNAME.ReadLine();
+            string tempString = name[i];
             try
             {
                 tempString = tempString.Substring(0, tempString.IndexOf("\\")) + "\n" + tempString.Substring(tempString.IndexOf("\\") + 2);
@@ -56,10 +58,9 @@ public class Select_Right_2 : MonoBehaviour
             catch (Exception e)
             {
             }
-            texts[tempi].text = tempString;
-            cons_name[tempi] = readerNAME_1.ReadLine();
-            texts[tempi].fontSize = 36;
-            tempi++;
+            texts[i].text = tempString;
+            cons_name[i] = name1[i].Trim();
+            texts[i].fontSize = 36;
         }
 
     }
@@ -104,7 +105,7 @@ public class Select_Right_2 : MonoBehaviour
             if (texts[sel].transform.localPosition.y < low_bond)
                 SB.value -= scroll;
             if (texts[sel].transform.localPosition.y > up_bond)
-               SB.value += scroll;
+                SB.value += scroll;
 
             if (Input.GetAxis("Fire2") > 0)
             {

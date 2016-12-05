@@ -1,40 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System;
+using UnityEngine;
 
-public class Constellations {
-    private Dictionary<string,Constellation> constellations;
+public class Constellations
+{
+    private Dictionary<string, Constellation> constellations;
 
-    public Constellations() {
+    public Constellations()
+    {
         constellations = new Dictionary<string, Constellation>();
         readConsFromFile();
     }
 
 
-    public Dictionary<string,Constellation> getConstellations() {
+    public Dictionary<string, Constellation> getConstellations()
+    {
         return constellations;
     }
 
     public void readConsFromFile()
     {
         int count = 0;
-        var readerNAME = new StreamReader(File.OpenRead(@"./Assets/ConstellationData/ConstellationCSV/_names"));
-        while (!readerNAME.EndOfStream)
+
+        TextAsset nameData = Resources.Load("ConstellationData/ConstellationCSV/_names") as TextAsset;
+
+        string[] names = nameData.text.ToString().Split('\n');
+
+
+
+        for (int iname = 0; iname<names.Length; iname++)
         {
-            string name = readerNAME.ReadLine();
-            Console.WriteLine(name);
-            var readerX = new StreamReader(File.OpenRead(@"./Assets/ConstellationData/ConstellationCSV/Cons_" + name + ".csv"));
-            var line = "";
+            string name = names[iname].Trim();
+            string CSVname = "ConstellationData/ConstellationCSV/Cons_" + name;
+
+            TextAsset tempCSVData = Resources.Load(CSVname) as TextAsset;
+
             bool RApositionFind = false;
             int RAposition = 0;
             Constellation cons = new Constellation(name);
 
-            while (!readerX.EndOfStream)
+            foreach (String line in tempCSVData.ToString().Split('\n'))
             {
-
-
-                line = readerX.ReadLine();
                 string[] temp = line.Split(',');
                 if (temp.Length > 10)
                 {
@@ -128,7 +135,7 @@ public class Constellations {
                         Star tempStar = new Star(Starname, B, Var, HD, HIP, RA, DEC, vismag, absmag, dist, Sp_class, notes);
                         try
                         {
-                            cons.stars.Add(tempStar.Name, tempStar);
+                            cons.stars.Add(tempStar.Name, tempStar);                   
                         }
                         catch (Exception e)
                         {
@@ -148,18 +155,20 @@ public class Constellations {
             constellations.Add(name, cons);
         }
 
-        readerNAME = new StreamReader(File.OpenRead(@"./Assets/ConstellationData/Const_line"));
+        TextAsset LineData = Resources.Load("ConstellationData/Const_line") as TextAsset;
+
         Constellation currentCon = null;
-        while (!readerNAME.EndOfStream)
+        foreach (string temp in LineData.ToString().Split('\n'))
         {
-            string temp = readerNAME.ReadLine();
             string[] topo = temp.Split(',');
             if (topo.Length == 1)
             {
-                constellations.TryGetValue(topo[0], out currentCon);
+                constellations.TryGetValue(topo[0].Trim(), out currentCon);
                 continue;
             }
-            currentCon.topoMap.Add(new Constellation.StarLine(topo[0], topo[1]));
+            currentCon.topoMap.Add(new Constellation.StarLine(topo[0].Trim(), topo[1].Trim()));
         }
+        
     }
+
 }

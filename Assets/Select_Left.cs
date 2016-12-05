@@ -25,6 +25,7 @@ public class Select_Left : MonoBehaviour {
         texts = GetComponentsInChildren<Text>();
         foreach (Text t in texts)
             t.color = Color.white;
+        texts[1].color = Color.yellow;
         texts[2].color = Color.gray;
 
         sel = 0;

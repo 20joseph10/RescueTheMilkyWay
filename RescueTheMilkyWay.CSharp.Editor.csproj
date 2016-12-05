@@ -145,6 +145,11 @@
     <None Include="Assets\OVR\Resources\Unlit Transparent Color.shader" />
     <None Include="Assets\OVR\Shaders\OVRColorRampAlpha.shader" />
     <None Include="Assets\OVR\Shaders\Unlit Crosshair.shader" />
+    <None Include="Assets\Resources\ConstellationData\Const_line.txt" />
+    <None Include="Assets\Resources\ConstellationData\ConstellationCSV\ConstName_Lines.txt" />
+    <None Include="Assets\Resources\ConstellationData\ConstellationCSV\ConstName_Lines_full.txt" />
+    <None Include="Assets\Resources\ConstellationData\ConstellationCSV\_names.txt" />
+    <None Include="Assets\Resources\ConstellationData\ConstellationCSV\_names_full.txt" />
     <None Include="Assets\Resources\Misc\WFX_S Add Scroll.shader" />
     <None Include="Assets\Resources\Misc\WFX_S Multiply Soft Scroll.shader" />
     <None Include="Assets\Resources\Misc\WFX_S Particle Add A8.shader" />

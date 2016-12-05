@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using VRStandardAssets.Examples;
 using UnityEngine.SceneManagement;
 
-public class Intro_2_Creat : MonoBehaviour {
+public class Intro_2_Creat : MonoBehaviour
+{
     // Use this for initialization
     public long N = 20;
     public long M = 2;
@@ -13,7 +14,6 @@ public class Intro_2_Creat : MonoBehaviour {
     public Boolean mat = true;
 
     public GameObject gb;
-
 
     private bool FirstTimeGame = false;
     private static Constellations cons;
@@ -80,13 +80,14 @@ public class Intro_2_Creat : MonoBehaviour {
         }
         
     */
-        
-        
+
+
     }
 
     void Update()
     {
-        if (Input.GetAxis("Fire1") > 0 && !FirstTimeGame){
+        if (Input.GetAxis("Fire1") > 0 && !FirstTimeGame)
+        {
             gb.GetComponent<WalkInConstellation>().startGame("UMa");
             FirstTimeGame = true;
         }

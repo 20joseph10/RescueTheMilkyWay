@@ -39,15 +39,18 @@ public class Select_Right_1 : MonoBehaviour
         move = true;
         On = false;
         active = false;
-        var readerNAME_1 = new StreamReader(File.OpenRead(@"./Assets/ConstellationData/ConstellationCSV/_names"));
-        var readerNAME = new StreamReader(File.OpenRead(@"./Assets/ConstellationData/ConstellationCSV/_names_full"));
-        int tempi = 0;
-        while (!readerNAME.EndOfStream)
+
+        TextAsset nameData1 = Resources.Load("ConstellationData/ConstellationCSV/_names") as TextAsset;
+        TextAsset nameData = Resources.Load("ConstellationData/ConstellationCSV/_names_full") as TextAsset;
+
+        string[] name1 = nameData1.ToString().Split('\n');
+        string[] name = nameData.ToString().Split('\n');
+
+        for (int i = 0; i < name.Length; i++)
         {
-            texts[tempi].text = readerNAME.ReadLine();
-            cons_name[tempi] = readerNAME_1.ReadLine();
-            texts[tempi].fontSize = 40;
-            tempi++;
+            texts[i].text = name[i];
+            cons_name[i] = name1[i].Trim();
+            texts[i].fontSize = 40;
         }
 
 
@@ -106,7 +109,6 @@ public class Select_Right_1 : MonoBehaviour
 
             if (push && Input.GetAxis("Fire1") > 0)
             {
-                Debug.Log("Select_Right_1");
                 panel.menu.enabled = false;
                 panel.active = false;
                 Walk.moveTo(cons_name[sel]);

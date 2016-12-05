@@ -58,9 +58,7 @@ public class WalkInConstellation : MonoBehaviour {
             totalLines = 0;
             Arrow = (GameObject)Instantiate(Resources.Load("Arrow", typeof(GameObject)));
 
-
             cons.getConstellations().TryGetValue(constellation_Walk, out current_constellation);
-
             
             foreach (Constellation.StarLine starLine in current_constellation.topoMap)
             {
@@ -92,9 +90,6 @@ public class WalkInConstellation : MonoBehaviour {
             var rot = Quaternion.LookRotation(line[currentIndex].GetComponent<ConnectLine>().b - transform.position);
             Arrow.transform.rotation = Quaternion.Slerp(Arrow.transform.rotation, rot, Time.deltaTime * 0.9f);
             Vector3 moveArrowTo = transform.position + cam.transform.forward * 15.0f + Vector3.up * 1.0f + Vector3.right * 3.0f;
-
-            Debug.Log(transform.position);
-            Debug.Log("move to :" + moveArrowTo);
             float smoothFac = 0.6f;
 
             Arrow.transform.position = smoothFac * Arrow.transform.position + moveArrowTo * (1 - smoothFac);
@@ -119,7 +114,8 @@ public class WalkInConstellation : MonoBehaviour {
         if (currentIndex >= totalLines) {
             //finished game
             countText.text = "";
-            star = (GameObject)Instantiate(Resources.Load(constellation_Walk, typeof(GameObject)));
+            Debug.Log(constellation_Walk);
+            star = (GameObject)Instantiate(Resources.Load(constellation_Walk.Trim(), typeof(GameObject)));
             star.transform.SetParent(textParent, false);
             star.transform.localPosition = new Vector3(-52.3f,137.6f,0.1f);
             star.transform.localScale = new Vector3(3.5f, 3.5f, 0.5f);
@@ -160,6 +156,7 @@ public class WalkInConstellation : MonoBehaviour {
     }
 
     public void startGame(String consname) {
+
         if (notInGame)
         {
             Constellation current_constellation;

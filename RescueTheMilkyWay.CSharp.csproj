@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -95,6 +93,7 @@
     <Compile Include="Assets\Intro_1_Interactive.cs" />
     <Compile Include="Assets\Intro_1_TextManager.cs" />
     <Compile Include="Assets\Intro_2_Creat.cs" />
+    <Compile Include="Assets\Intro_2_Walker.cs" />
     <Compile Include="Assets\MapDisplay.cs" />
     <Compile Include="Assets\OSVRUnity\Sample\Demo\Scripts\Managers\ColorManager.cs" />
     <Compile Include="Assets\OSVRUnity\Sample\Demo\Scripts\Objects\ColorChanger.cs" />
@@ -222,6 +221,11 @@
     <None Include="Assets\OVR\Resources\Unlit Transparent Color.shader" />
     <None Include="Assets\OVR\Shaders\OVRColorRampAlpha.shader" />
     <None Include="Assets\OVR\Shaders\Unlit Crosshair.shader" />
+    <None Include="Assets\Resources\ConstellationData\Const_line.txt" />
+    <None Include="Assets\Resources\ConstellationData\ConstellationCSV\ConstName_Lines.txt" />
+    <None Include="Assets\Resources\ConstellationData\ConstellationCSV\ConstName_Lines_full.txt" />
+    <None Include="Assets\Resources\ConstellationData\ConstellationCSV\_names.txt" />
+    <None Include="Assets\Resources\ConstellationData\ConstellationCSV\_names_full.txt" />
     <None Include="Assets\Resources\Misc\WFX_S Add Scroll.shader" />
     <None Include="Assets\Resources\Misc\WFX_S Multiply Soft Scroll.shader" />
     <None Include="Assets\Resources\Misc\WFX_S Particle Add A8.shader" />
